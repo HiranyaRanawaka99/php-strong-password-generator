@@ -1,13 +1,15 @@
 <?php
 
-include __DIR__ . '/functions/functions.php';
+include_once  './functions/functions.php';
 
 // MAIN LOGIC
-$form_submitted = isset($_GET);
-$password_length = $_GET['password'] ?? '';
+$form_submitted = isset($_GET ['password']);
+$password_length = (int) $_GET['password'] ?? '';
 
 if($form_submitted) {
-    $generated_password = generate_password($password_length);
+    session_start();
+    $_SESSION['generated_password'] = generate_password($password_length);
+    header('Location: generated.php');
 // var_dump($generated_password);
 }
 
@@ -17,11 +19,7 @@ if($form_submitted) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Generate password</title>
+   <?php include __DIR__ .'/template/head.php' ?>
 </head>
 <body>
     <div class="container mt-5">
@@ -34,8 +32,6 @@ if($form_submitted) {
                 <button class="btn btn-primary">Genera password</button>
             </div>
             <hr>
-            <div class="generated-password">Your secure password is: <?= $generated_password?></div>
-
         </form>
     </div>
     

@@ -1,4 +1,5 @@
 <?php
+// PASSWORD GENERATION
 function generate_password($password_length) 
 {
 
@@ -19,6 +20,7 @@ function generate_password($password_length)
         return $generated_password;
 }
     
+// RANDOM CHARS GENERATION
 function generate_random_chars($charset) 
 {
     $min = 0;
@@ -29,17 +31,3 @@ function generate_random_chars($charset)
 }
 
 ?>
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
