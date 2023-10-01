@@ -1,33 +1,19 @@
 <?php
 
+include __DIR__ . '/functions/functions.php';
+
+// MAIN LOGIC
 $form_submitted = isset($_GET);
 $password_length = $_GET['password'] ?? '';
 
 if($form_submitted) {
-    $numeric_chars = '01234567890';
-    $lc_chars='abcdefghijklmnopqrstuvwxyz';
-    $up_chars = strtoupper($lc_chars);
-    $special_chars = '?!.,-_+*{}[]£$%&/()=';
-
-    $allowed_chars = $numeric_chars . $lc_chars . $up_chars . $special_chars;
-    
-    $generated_password = '';
-    for ($i = 0; $i < $password_length; $i++) {
-
-        $min = 0;
-        $max = strlen($allowed_chars) - 1;
-
-        $random_char_index = rand($min, $max);
-        $random_char = $allowed_chars[$random_char_index];
-
-        $generated_password .= $random_char;
-    }
-
-var_dump($generated_password);
+    $generated_password = generate_password($password_length);
+// var_dump($generated_password);
 }
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
